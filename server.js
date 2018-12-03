@@ -13,13 +13,13 @@ const send404 = (response) => {
 const sendFile = (response, filePath, fileContents) => {
   response.writeHead(
     200,
-    {'content-type': mime.lookup(path.basename(filePath))}
+    {'content-type': mime.getType(path.basename(filePath))}
   )
   response.end(fileContents)
 }
 
-const serveStatic = (response, cach, absPath) => {
-  if (cach[absPath]) {
+const serveStatic = (response, cache, absPath) => {
+  if (cache[absPath]) {
     sendFile(response, absPath, cache[absPath])
   } else {
     fs.exists(absPath, (exists) => {
@@ -28,7 +28,7 @@ const serveStatic = (response, cach, absPath) => {
           if (err) {
             send404(response)
           } else {
-            cach[absPath] = data
+            cache[absPath] = data
             sendFile(response, absPath, data)
           }
         })
@@ -49,7 +49,7 @@ const server = http.createServer((request, response) => {
   }
 
   const absPath = './' + filePath
-  serveStatic(response, cach, absPath)
+  serveStatic(response, cache, absPath)
 })
 
 server.listen(3000, () => {
