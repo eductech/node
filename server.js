@@ -38,3 +38,20 @@ const serveStatic = (response, cach, absPath) => {
     })
   }
 }
+
+const server = http.createServer((request, response) => {
+  let filePath = false
+
+  if (request.url == '/') {
+    filePath = 'public/index.html'
+  } else {
+    filePath = 'public' + request.url
+  }
+
+  const absPath = './' + filePath
+  serveStatic(response, cach, absPath)
+})
+
+server.listen(3000, () => {
+  console.log('Server listening on port 3000.')
+})
