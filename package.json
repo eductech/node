@@ -4,12 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eductech/node.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eductech/node/issues"
+  },
+  "homepage": "https://github.com/eductech/node#readme",
   "dependencies": {
-    "mime": "^2.4.0",
-    "socket.io": "^2.2.0"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "sqlite3": "^3.1.8"
   }
 }
