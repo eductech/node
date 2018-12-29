@@ -5,6 +5,4 @@ class Example {
 }
 
 const example = new Example()
-
-console.log();
-console.log();
+console.log(example.render())
